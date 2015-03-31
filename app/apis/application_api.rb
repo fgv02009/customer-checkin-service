@@ -4,6 +4,7 @@ class ApplicationApi < Grape::API
 
   # mount HelloApi => '/'
   mount UsersApi => '/'
+  mount BusinessesApi => '/'
 
   add_swagger_documentation
 end
