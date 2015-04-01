@@ -3,6 +3,7 @@ class CreateVisit < ActiveRecord::Migration
     create_table :visits do |t|
       t.belongs_to :user
       t.belongs_to :business
+      t.string :daily_code
     end
   end
 end

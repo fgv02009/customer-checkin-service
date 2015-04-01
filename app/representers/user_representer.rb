@@ -4,5 +4,4 @@ class UserRepresenter < Napa::Representer
   property :email
   property :points
   property :password
-
 end

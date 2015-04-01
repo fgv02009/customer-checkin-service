@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150331184851) do
   create_table "visits", force: true do |t|
     t.integer "user_id"
     t.integer "business_id"
+    t.string  "daily_code"
   end
 
 end

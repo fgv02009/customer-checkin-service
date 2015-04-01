@@ -1,5 +1,18 @@
 class UsersApi < Grape::API
 
+  helpers do
+    # def current_user
+    #   @current_user ||= User.authorize!(env)
+    # end
+
+    # def authenticate!
+    #   error!('401 Unauthorized', 401) unless current_user
+    # end
+    #  def permitted_params
+    #   @permitted_params ||= declared(params, include_missing: false)
+    # end
+  end
+
   resource :users do
     desc 'Get a list of users'
     params do
@@ -10,22 +23,22 @@ class UsersApi < Grape::API
       represent users, with: UserRepresenter
     end
 
-    desc 'Show new form for signup'
-    get :new do
-      user = User.new
-      represent user, with:UserRepresenter
-    end
+    # desc 'Show new form for signup'
+    # get :new do
+    #   user = User.new
+    #   represent user, with:UserRepresenter
+    # end
 
     desc 'Create an user'
     params do
-      optional :username, type: String, desc: 'The Username of the user'
-      optional :email, type: String, desc: 'The email of the user'
-      optional :points, type: Integer, desc: 'The amount of points a user has'
-      optional :password, type: String, desc: 'The password of the person'
+      requires :username, type: String, desc: 'The Username of the user'
+      requires :email, type: String, desc: 'The email of the user'
+      requires :points, type: Integer, desc: 'The amount of points a user has'
+      requires :password, type: String, desc: 'The password of the person'
     end
-
     post do
-      user = User.create!(permitted_params)
+      user = User.create!(username: params[:username], email: params[:email], points: params[:points], password:params[:password])
+      error!(present_error(:record_invalid, user.errors.full_messages)) unless user.errors.empty?
       represent user, with: UserRepresenter
     end
 
