@@ -1,0 +1,1 @@
+# Napa::ParamSanitizer.filter_params = [:password]

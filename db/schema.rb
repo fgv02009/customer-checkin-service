@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150331184851) do
     t.string   "name"
     t.string   "address"
     t.string   "daily_code"
+    t.string   "password_hash"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

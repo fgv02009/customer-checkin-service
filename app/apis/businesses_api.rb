@@ -9,21 +9,15 @@ class BusinessesApi < Grape::API
       represent businesses, with: BusinessRepresenter
     end
 
-    desc 'Show new form for signup'
-    get :new do
-      business = Business.new
-      represent business, with:BusinessRepresenter
-    end
-
     desc 'Create an business'
     params do
-    optional :name, type: String, desc: 'The Name of the business'
-    optional :address, type: String, desc: 'The address of the business'
-    optional :daily_code, type: String, desc: 'The daily_code of the business'
+    requires :name, type: String, desc: 'The Name of the business'
+    requires :address, type: String, desc: 'The address of the business'
+    requires :daily_code, type: String, desc: 'The daily_code of the business'
     end
 
     post do
-      business = Business.create!(permitted_params)
+      business = Business.create!(name: params[:name], address: params[:address], daily_code: params[:daily_code])
       represent business, with: BusinessRepresenter
     end
 
@@ -37,17 +31,10 @@ class BusinessesApi < Grape::API
         represent business, with: BusinessRepresenter
       end
 
-      desc 'Update an business'
-      params do
-        optional :name, type: String, desc: 'The name of the business'
-        optional :address, type: String, desc: 'The address of the business'
-        optional :daily_code, type: String, desc: 'The daily code of the business'
-      end
-      put do
-        # fetch business record and update attributes.  exceptions caught in app.rb
+      desc 'Get the checkin count of a restaurant'
+      get :checkins do
         business = Business.find(params[:id])
-        business.update_attributes!(permitted_params)
-        represent business, with: BusinessRepresenter
+        business.checkins
       end
     end
   end

@@ -1,5 +1,5 @@
 class VisitRepresenter < Napa::Representer
-  property :id, type: String
+  property :id, type: Integer
   property :user
   property :business
   property :daily_code

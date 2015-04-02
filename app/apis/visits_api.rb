@@ -24,8 +24,7 @@ class VisitsApi < Grape::API
       daily_code = params[:daily_code]
       if user
         visit = Visit.new(user: user, business: business, daily_code: daily_code)
-        if visit.check_daily_code && !visit.already_checked_in_today?(business, user, daily_code)
-          visit.save
+        if visit.save
           represent visit, with: VisitRepresenter
         else
           {message: "You either have the wrong code to check into #{params[:business_name]} or you have already checked in once today."}
@@ -42,16 +41,6 @@ class VisitsApi < Grape::API
       end
       get do
         visit = Visit.find(params[:id])
-        represent visit, with: VisitRepresenter
-      end
-
-      desc 'Update an visit'
-      params do
-      end
-      put do
-        # fetch visit record and update attributes.  exceptions caught in app.rb
-        visit = Visit.find(params[:id])
-        visit.update_attributes!(permitted_params)
         represent visit, with: VisitRepresenter
       end
     end

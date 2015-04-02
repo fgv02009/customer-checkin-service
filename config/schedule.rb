@@ -3,9 +3,10 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
+# job_type :runner,  "cd :path && bin/rails runner -e :environment ':task' :output"
 # Example:
 #
-# set :output, "/path/to/my/cron_log.log"
+# set :output, "/Users/florenciagarcia/desktop/cron_log.log"
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
 #   runner "MyModel.some_method"

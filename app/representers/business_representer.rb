@@ -1,5 +1,5 @@
 class BusinessRepresenter < Napa::Representer
-  property :id, type: String
+  property :id, type: Integer
   property :name
   property :address
   property :daily_code

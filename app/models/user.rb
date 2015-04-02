@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   has_many :visits
   has_many :checkins, through: :visits, source: :business
 
+  validates_presence_of :username, :email, :password_hash
+  validates_uniqueness_of :email
+
 
   def self.authenticate(email, password)
     user = User.find_by(email: email)
