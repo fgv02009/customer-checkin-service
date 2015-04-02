@@ -1,5 +1,5 @@
 class UsersApi < Grape::API
-
+  # format :json
   helpers do
     # def current_user
     #   @current_user ||= User.authorize!(env)
@@ -33,11 +33,10 @@ class UsersApi < Grape::API
     params do
       requires :username, type: String, desc: 'The Username of the user'
       requires :email, type: String, desc: 'The email of the user'
-      requires :points, type: Integer, desc: 'The amount of points a user has'
       requires :password, type: String, desc: 'The password of the person'
     end
     post do
-      user = User.create!(username: params[:username], email: params[:email], points: params[:points], password:params[:password])
+      user = User.create!(username: params[:username], email: params[:email], password:params[:password])
       error!(present_error(:record_invalid, user.errors.full_messages)) unless user.errors.empty?
       represent user, with: UserRepresenter
     end
@@ -56,7 +55,6 @@ class UsersApi < Grape::API
       params do
         optional :username, type: String, desc: 'The Username of the user'
         optional :email, type: String, desc: 'The email of the user'
-        optional :points, type: Integer, desc: 'The amount of points a user has'
         optional :password, type: String, desc: 'The password of the person'
       end
 
@@ -65,6 +63,13 @@ class UsersApi < Grape::API
         user.update_attributes!(permitted_params)
         represent user, with: UserRepresenter
       end
+
+      desc 'Get a users check in point'
+      get :points do
+        user = User.find(params[:id])
+        user.points
+      end
+
     end
 
   end

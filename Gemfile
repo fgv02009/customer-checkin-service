@@ -11,6 +11,8 @@ gem 'roar', '~> 0.12.0'
 gem 'grape-swagger'
 gem 'faker'
 gem 'grape-rabl'
+gem 'whenever', :require => false
+gem 'bcrypt'
 
 group :development,:test do
   gem 'pry'

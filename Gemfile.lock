@@ -25,7 +25,9 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
+    bcrypt (3.1.10)
     builder (3.1.4)
+    chronic (0.10.2)
     coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -174,12 +176,15 @@ GEM
     webmock (1.21.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   activerecord (~> 4.0.0)
+  bcrypt
   database_cleaner
   factory_girl
   faker
@@ -198,3 +203,4 @@ DEPENDENCIES
   shotgun
   simplecov
   webmock
+  whenever

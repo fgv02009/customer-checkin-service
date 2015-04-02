@@ -16,22 +16,27 @@ ActiveRecord::Schema.define(version: 20150331184851) do
   enable_extension "plpgsql"
 
   create_table "businesses", force: true do |t|
-    t.string "name"
-    t.string "address"
-    t.string "daily_code"
+    t.string   "name"
+    t.string   "address"
+    t.string   "daily_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-    t.string  "username"
-    t.string  "email"
-    t.integer "points"
-    t.string  "password"
+    t.string   "username"
+    t.string   "email"
+    t.string   "password_hash"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "visits", force: true do |t|
-    t.integer "user_id"
-    t.integer "business_id"
-    t.string  "daily_code"
+    t.integer  "user_id"
+    t.integer  "business_id"
+    t.string   "daily_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

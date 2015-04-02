@@ -5,7 +5,6 @@ require 'napa/setup'
 Bundler.require(:default, Napa.env.to_sym)
 require 'napa'
 require 'faker'
-require 'grape/rabl'
 
 
 

@@ -4,6 +4,8 @@ class CreateVisit < ActiveRecord::Migration
       t.belongs_to :user
       t.belongs_to :business
       t.string :daily_code
+
+      t.timestamps
     end
   end
 end

@@ -4,6 +4,8 @@ class CreateBusiness < ActiveRecord::Migration
       t.string :name
       t.string :address
       t.string :daily_code
+
+      t.timestamps
     end
   end
 end
