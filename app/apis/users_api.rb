@@ -36,9 +36,17 @@ class UsersApi < Grape::API
       end
 
       desc 'Get a users check in point'
+      params do
+        requires :email, desc: "email of the user"
+        requires :password, desc: "password of the user"
+      end
       get :points do
-        user = User.find(params[:id])
-        user.points
+        user = User.authenticate(params[:email], params[:password])
+        if user
+          user.points
+        else
+          {message: "incorrect password"}
+        end
       end
     end
   end

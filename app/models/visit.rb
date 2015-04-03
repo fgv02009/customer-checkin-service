@@ -14,7 +14,7 @@ class Visit < ActiveRecord::Base
 
   def already_checked_in_today?
     if !Visit.where(business: business, user: user, daily_code: daily_code).empty?
-      errors.add(:user, "you've already checked in today")
+      errors.add(:user, "has already checked in today")
     end
   end
 end

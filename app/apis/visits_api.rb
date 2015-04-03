@@ -1,15 +1,8 @@
 class VisitsApi < Grape::API
   resource :visits do
 
-    desc 'Get a list of visits'
-    params do
-      optional :ids, type: Array, desc: 'Array of visit ids'
-    end
-    get do
-      visits = params[:ids] ? Visit.where(id: params[:ids]) : Visit.all
-      represent visits, with: VisitRepresenter
-    end
 
+    #How a user checks in
     desc 'Create an visit'
     params do
       requires :email, type: String, desc: 'The email of the user'
@@ -31,17 +24,6 @@ class VisitsApi < Grape::API
         end
       else
         {message: "That is the incorrect email or password"}
-      end
-    end
-
-    route_param :id do
-      desc 'Get a visit'
-      params do
-        requires :id, desc: 'ID of the visit'
-      end
-      get do
-        visit = Visit.find(params[:id])
-        represent visit, with: VisitRepresenter
       end
     end
   end
